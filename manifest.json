@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "getJSDS",
+  "version": "1.0",
+  "permissions": ["clipboardWrite"],
+  "optional_host_permissions": ["https://localhost/*"],
+  "action": {
+    "default_icon": {
+      "19": "./icons/logo_2_19.png",
+      "38": "./icons/logo_2_38.png"
+    },
+    "default_title": "GetJSDS",
+    "default_popup": "./browserAction/popup.html"
+  }
+}

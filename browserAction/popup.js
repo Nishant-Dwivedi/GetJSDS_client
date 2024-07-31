@@ -1,3 +1,16 @@
+const guideline = `\n \n// Usage Guidelines\n`;
+const api_info = `\n \n// Start writing your code from here.\n`;
+// this needs to be removed after being used as a template
+const usage = `
+
+// Usage guideline
+// Instantiate a new trie: let my_trie = new trie()
+// Insert a word into the trie: my_trie.insert(word)
+// Remove a word from the trie: my_trie.remove(word)
+// Query if a word exists in the trie: my_trie.has(word)
+// Query if a word is a prefix on another word that exists in the trie: my_trie.startsWith(word)
+// Get the size of the trie: my_trie.size`;
+
 const select = document.getElementById("select");
 select.addEventListener("change", (e) => {
   getDataStructure(e);
@@ -6,7 +19,7 @@ select.addEventListener("change", (e) => {
 async function writeToClipBoard(text) {
   try {
     const res = await navigator.clipboard.writeText(text);
-    console.log("write to cb completed");
+    console.log("Copying to the clip board successful.");
   } catch (error) {
     console.error(error);
     throw new Error(error);
@@ -20,12 +33,11 @@ async function getDataStructure(event) {
     const res = await fetch(url);
     if (res.status == 200) {
       const ds = await res.json();
-      writeToClipBoard(ds.content);
-      console.log("copied to clip board");
-    } else {
       writeToClipBoard(
-        `The requested data structure could not be found on the server.`
+        ds.content.concat(guideline).concat(ds.usage).concat(api_info)
       );
+    } else {
+      console.log(res.statusText);
     }
   } catch (error) {
     console.error(error);

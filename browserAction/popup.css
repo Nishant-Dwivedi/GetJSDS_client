@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Inconsolata";
+  src: url(../fonts/Inconsolata-Medium.ttf);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  background-color: #f9f9fb;
+}
+
+#logo {
+  height: 140px;
+  margin-bottom: 5px;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+label {
+  margin-bottom: 7.5px;
+  font-family: "Inconsolata";
+}

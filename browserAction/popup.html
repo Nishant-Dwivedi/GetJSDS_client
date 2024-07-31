@@ -3,17 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="popup.css" />
     <title>GetJSDS</title>
   </head>
   <body>
-    <h4>Select a Data Structure</h4>
-    <select id="select" name="ds" id="ds">
-      <option selected disabled>Select</option>
-      <option id="queue" value="queue">Queue</option>
-      <option id="trie" value="trie">Trie</option>
-      <option id="stack" value="stack">Stack</option>
-      <option id="union find" value="union find">Union Find</option>
-    </select>
+    <img id="logo" src="../icons/logo-no-background.svg" alt="" srcset="" />
+    <div id="container">
+      <label for="select">Select a Data Structure:</label>
+      <select id="select" name="ds">
+        <option selected disabled>Select</option>
+        <option id="queue" value="queue">Queue</option>
+        <option id="trie" value="trie">Trie</option>
+        <option id="stack" value="stack">Stack</option>
+        <option id="union find" value="union find">Union Find</option>
+      </select>
+    </div>
+
     <script src="popup.js" defer></script>
   </body>
 </html>

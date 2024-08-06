@@ -1,2 +1,3 @@
 # GetJSDS_client
-An extension to fetch some common data structures written in Javascript.
+
+GetJSDS is an extension that fetches some commonly used data structures that are unavailable in Javascript from a server, and copies them to the clipboard.

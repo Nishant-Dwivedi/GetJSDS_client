@@ -12,17 +12,26 @@ body {
 
 #logo {
   height: 140px;
-  margin-bottom: 5px;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
 }
 
 #container {
   display: flex;
   flex-direction: column;
-  padding-top: 5px;
-  padding-bottom: 5px;
 }
 
 label {
-  margin-bottom: 7.5px;
   font-family: "Inconsolata";
+  padding: 4px 0px 4px 2.5px;
+}
+
+#select {
+  padding: 2.5px;
+}
+
+#notification {
+  font-size: small;
+  padding: 2.5px 0px 0px 2.5px;
+  margin: 0px;
 }

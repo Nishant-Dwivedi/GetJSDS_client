@@ -4,9 +4,11 @@ const baseURL = `http://localhost:3000/getJSDS`;
 const select = document.getElementById("select");
 const notification = document.getElementById("notification");
 
-select.addEventListener("change", (e) => {
-  getDataStructure(e);
-});
+select.addEventListener("change", handleChangeEvent);
+
+async function handleChangeEvent(event) {
+  getDataStructure(event);
+}
 
 async function writeToClipBoard(text) {
   try {
@@ -49,13 +51,13 @@ function handleNotification(dataStr, fetchStatus) {
   let name = dataStr.charAt(0).toUpperCase().concat(dataStr.slice(1));
   if (fetchStatus == "success") {
     notification.style.color = "green";
-    notification.textContent = `${name} fetched successfully.`;
+    notification.textContent = `${name} was copied to the clipboard.`;
   } else if (fetchStatus == "fetching") {
     notification.style.color = "green";
     notification.textContent = `Fetching ${name}...`;
   } else if (fetchStatus == "error") {
     notification.style.color = "red";
-    notification.textContent = "Error occurred.";
+    notification.textContent = "Some error has occurred.";
   }
   return;
 }

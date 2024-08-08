@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "GetJSDS",
   "version": "1.0",
-  "permissions": ["clipboardWrite"],
+  "permissions": ["clipboardWrite", "storage"],
   "optional_host_permissions": ["https://localhost/*"],
   "action": {
     "default_icon": {

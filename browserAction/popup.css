@@ -2,18 +2,20 @@
   font-family: "Inconsolata";
   src: url(../fonts/Inconsolata-Medium.ttf);
 }
-
+* {
+  box-sizing: border-box;
+}
 body {
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
   background-color: #f9f9fb;
+  height: 250px;
+  width: 200px;
+  justify-content: space-around;
 }
 
 #logo {
   height: 140px;
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
 }
 
 #container {
@@ -23,15 +25,18 @@ body {
 
 label {
   font-family: "Inconsolata";
-  padding: 4px 0px 4px 2.5px;
+  padding-left: 2.5px;
 }
 
 #select {
-  padding: 2.5px;
+  padding: 2px 0 2px 2.5px;
+  margin: 8px 0 8px 0;
 }
 
 #notification {
-  font-size: small;
-  padding: 2.5px 0px 0px 2.5px;
+  font-family: "Inconsolata";
+  font-size: medium;
+  padding-left: 2.5px;
   margin: 0px;
+  min-height: 34px;
 }

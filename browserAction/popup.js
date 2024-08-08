@@ -3,11 +3,60 @@ const api_info = `\n \n// Start writing your code from here.\n`;
 const baseURL = `http://localhost:3000/getJSDS`;
 const select = document.getElementById("select");
 const notification = document.getElementById("notification");
+const localStorage = browser.storage.local;
 
 select.addEventListener("change", handleChangeEvent);
 
 async function handleChangeEvent(event) {
-  getDataStructure(event);
+  const dataStructureName = event.target.value;
+  let dataStructure = null;
+  // check if the ds exits already in the localStorage and isn't invalidated
+  try {
+    const dsInLocalStorage = await localStorage.get(dataStructureName);
+    if (dsInLocalStorage[dataStructureName]?.name) {
+      const timeToLive = 0;
+      const now = Date.now();
+      const differenceInDaysFromLastCached = Math.floor(
+        (now - dsInLocalStorage[dataStructureName].timeStamp) /
+          (24 * 60 * 60 * 1000)
+      );
+      if (differenceInDaysFromLastCached > timeToLive) {
+        console.log("Clipboard will be written to from the local storage.");
+        handleNotification(dsInLocalStorage[dataStructureName].name, "success");
+        writeToClipBoard(
+          dsInLocalStorage[dataStructureName].content
+            .concat(guideline)
+            .concat(dsInLocalStorage[dataStructureName].usage)
+            .concat(api_info)
+        );
+        return;
+      }
+    }
+  } catch (error) {
+    console.error(error);
+  }
+
+  // else fetch it from server and save it to local storage
+  try {
+    handleNotification(dataStructureName, "fetching");
+    dataStructure = await fetchDataStructureFromServer(dataStructureName);
+    handleNotification(dataStructure.name, "success");
+    writeToClipBoard(
+      dataStructure.content
+        .concat(guideline)
+        .concat(dataStructure.usage)
+        .concat(api_info)
+    );
+    await localStorage.set({
+      [dataStructureName]: {
+        ...dataStructure,
+        timeStamp: Date.now(),
+      },
+    });
+  } catch (error) {
+    handleNotification(dataStructureName, "error");
+    writeToClipBoard("");
+  }
 }
 
 async function writeToClipBoard(text) {
@@ -22,28 +71,21 @@ async function writeToClipBoard(text) {
   }
 }
 
-async function getDataStructure(event) {
-  const url = `${baseURL}/${event.target.value}`;
-  console.log(`requesting ${event.target.value} from the server`);
-  handleNotification(event.target.value, "fetching");
+async function fetchDataStructureFromServer(dataStructureName) {
+  const url = `${baseURL}/${dataStructureName}`;
+  console.log(`fetching ${dataStructureName} from the server`);
   try {
     const res = await fetch(url);
     if (res.status == 200) {
       const ds = await res.json();
       console.log("fetch from the server was successful.");
-      handleNotification(ds.name, "success");
-      writeToClipBoard(
-        ds.content.concat(guideline).concat(ds.usage).concat(api_info)
-      );
+      return Promise.resolve(ds);
     } else {
-      console.log(res.statusText);
-      handleNotification(event.target.value, "error");
-      writeToClipBoard("");
+      throw new Error(res.statusText);
     }
   } catch (error) {
     console.error(error);
-    handleNotification(event.target.value, "error");
-    throw new Error(error);
+    return Promise.reject(error);
   }
 }
 

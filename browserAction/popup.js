@@ -12,27 +12,32 @@ async function handleChangeEvent(event) {
     handleNotification(dataStructureName, "fetching");
     const dataStructure = await fetchDataStructureFromServer(dataStructureName);
     handleNotification(dataStructure.name, "success");
-    writeToClipBoard(
+    await writeToClipBoard(
       dataStructure.content
         .concat(guideline)
         .concat(dataStructure.usage)
         .concat(api_info)
     );
   } catch (error) {
+    console.error(error);
     handleNotification(dataStructureName, "error");
-    writeToClipBoard("");
+    try {
+      await writeToClipBoard("");
+    } catch (error) {
+      console.error("Couldn't clear the clipboard.");
+    }
   }
 }
 
 async function writeToClipBoard(text) {
   try {
-    const res = await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(text);
     text != ""
       ? console.log("Data structure was succesfully copied to the clipboard.")
       : console.log("Clipboard was cleared.");
+    return Promise.resolve(`Write to clipboard was successfull.`);
   } catch (error) {
-    console.error(error);
-    throw new Error(error);
+    return Promise.reject(error);
   }
 }
 
@@ -46,10 +51,10 @@ async function fetchDataStructureFromServer(dataStructureName) {
       console.log("Fetch from the server was successful.");
       return Promise.resolve(ds);
     } else {
-      throw new Error(res.statusText);
+      console.log(`The requested resource isn't available on the server.`);
+      return Promise.reject(new Error(res.statusText));
     }
   } catch (error) {
-    console.error(error);
     return Promise.reject(error);
   }
 }

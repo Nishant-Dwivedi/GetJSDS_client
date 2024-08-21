@@ -28,7 +28,7 @@ img {
 
 video {
   padding-left: 8px;
-  max-height: 525px;
+  max-height: 515px;
 }
 
 @media screen and (max-width: 980px) {

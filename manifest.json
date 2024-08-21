@@ -4,6 +4,9 @@
   "version": "1.0",
   "permissions": ["clipboardWrite"],
   "optional_host_permissions": ["https://localhost/*"],
+  "background": {
+    "scripts": ["background-script.js"]
+  },
   "action": {
     "default_icon": {
       "19": "./icons/logo_2_19.png",

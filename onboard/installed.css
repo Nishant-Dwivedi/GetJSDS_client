@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+}
+
+header {
+  background-color: #bfbfc9;
+  padding: 8px;
+}
+
+h1,
+h3,
+p {
+  padding: 8px;
+}
+
+img {
+  width: 90px;
+}
+
+#toolbar-icon {
+  height: 18px;
+  width: auto;
+}
+
+#ctrlV {
+  color: green;
+}
+
+video {
+  padding-left: 8px;
+  max-height: 525px;
+}
+
+@media screen and (max-width: 980px) {
+  video {
+    max-width: 90%;
+  }
+}

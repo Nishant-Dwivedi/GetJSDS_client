@@ -12,7 +12,9 @@ h3,
 p {
   padding: 8px;
 }
-
+#disclaimer {
+  color: red;
+}
 img {
   width: 90px;
 }

@@ -3,7 +3,7 @@
   "name": "GetJSDS",
   "version": "1.0",
   "permissions": ["clipboardWrite"],
-  "optional_host_permissions": ["https://localhost/*"],
+  "optional_host_permissions": ["https://getjsds.onrender.com/"],
   "background": {
     "scripts": ["background-script.js"]
   },

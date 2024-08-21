@@ -1,6 +1,6 @@
 const guideline = `\n \n// Usage Guidelines\n`;
 const api_info = `\n \n// Start writing your code from here.\n`;
-const baseURL = `http://localhost:3000/getJSDS`;
+const baseURL = `https://getjsds.onrender.com/getjsds`;
 const select = document.getElementById("select");
 const notification = document.getElementById("notification");
 

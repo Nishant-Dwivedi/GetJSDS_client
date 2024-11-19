@@ -9,8 +9,8 @@
   },
   "action": {
     "default_icon": {
-      "19": "./icons/logo_2_19.png",
-      "38": "./icons/logo_2_38.png"
+      "19": "./icons/logo-new-no-background.svg",
+      "38": "./icons/logo-new-no-background.svg"
     },
     "default_title": "GetJSDS",
     "default_popup": "./browserAction/popup.html"
@@ -20,5 +20,9 @@
       "id": "thenishant30@gmail.com",
       "strict_min_version": "128.0"
     }
+  },
+  "icons": {
+    "48": "./icons/logo-new-no-background.svg",
+    "96": "./icons/logo-new-no-background.svg"
   }
 }

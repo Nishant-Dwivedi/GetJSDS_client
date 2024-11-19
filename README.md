@@ -20,6 +20,6 @@ GetJSDS is an extension that fetches some commonly used data structures that are
 
 **Upcoming updates (tentative)**
 
-- Addition on Union Find data-structure.
+- Addition of Union Find data-structure.
 - Addition of Minimum Priority Queue.
 - Support for google chrome browser (Manifest version 3.0).
